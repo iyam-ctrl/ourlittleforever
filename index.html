@@ -1,1 +1,91 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our Little Forever ♡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--bg:#08090d;--panel:#111219;--panel2:#171820;--text:#f8f2f4;--muted:#99959d;--pink:#f3a0b7;--pink2:#ffd0dc;--line:#292b33}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 75% 0,#2b1720,transparent 32%),var(--bg);color:var(--text);font:14px "DM Sans",sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}
+.hidden{display:none!important}.script{font-family:Caveat,cursive}.topbar{height:66px;border-bottom:1px solid #fff1;background:#09090dd9;backdrop-filter:blur(18px);display:flex;align-items:center;padding:0 28px;position:sticky;top:0;z-index:20}.brand{font-weight:700}.brand b{color:var(--pink);font-size:20px}.nav{margin:auto;display:flex;gap:28px;font-size:12px;color:#bbb}.nav a:hover{color:white}.user{display:flex;align-items:center;gap:10px;font-size:11px;color:#aaa}.avatar{width:33px;height:33px;border-radius:50%;background:linear-gradient(135deg,#6d514b,#e4a9b2);border:1px solid #fff3}.logout{border:0;background:none;color:#888;font-size:11px}
+.page{max-width:1240px;margin:auto;padding:30px}.hero{height:calc(100vh - 126px);min-height:610px;border-radius:28px;overflow:hidden;position:relative;background:linear-gradient(90deg,#08080dcc,#08080d55 48%,#08080d08),url("https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1800&q=90") center/cover;display:flex;align-items:center;box-shadow:0 25px 90px #0009}.hero:after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,#08080b)}.hero-content{position:relative;z-index:2;padding:0 8%;max-width:610px}.hero h1{font:600 clamp(62px,8vw,100px)/.84 Caveat,cursive;margin:18px 0}.hero h1 em{color:var(--pink2);font-style:normal}.hero p{line-height:1.8;color:#eee;max-width:420px}.counter{display:inline-flex;gap:12px;align-items:center;border:1px solid #f3a0b766;border-radius:13px;padding:12px 16px;background:#0d0b0fbd;margin:14px 0 20px}.counter strong{font-size:19px}.btn{border:0;border-radius:999px;padding:13px 21px;background:var(--pink);color:#25191d;font-weight:700}.bottom{position:absolute;bottom:22px;left:8%;z-index:3;font-size:11px;color:#ddd}
+section{padding:72px 0}.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:25px}.kicker{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);font-weight:700}.head h2{font-size:40px;margin:7px 0}.head p{margin:0;color:var(--muted)}.chips{display:flex;gap:7px}.chip{border:1px solid #292b33;background:#111219;color:#aaa;border-radius:999px;padding:9px 14px}.chip.active{background:var(--pink);color:#24181c;border-color:transparent}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card{background:var(--panel);border:1px solid #fff1;border-radius:16px;overflow:hidden}.thumb{height:235px;background:#171820;position:relative;cursor:pointer}.thumb img,.thumb video{width:100%;height:100%;object-fit:cover;display:block}.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#ffffff30;border:1px solid #fff8}.info{padding:14px}.info h3{font-size:13px;margin:0 0 5px}.info p{font-size:12px;color:#aaa;line-height:1.5;margin:0}.date{font-size:10px;color:#777;margin-top:11px}.add{min-height:310px;border:1px dashed #ffffff22;border-radius:16px;display:grid;place-items:center;text-align:center;color:#999}.add b{color:var(--pink);font-size:34px}
+.upload{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;background:#111219;border:1px solid #fff1;border-radius:22px;padding:20px}.drop{min-height:310px;border:1px dashed #f3a0b766;border-radius:17px;display:grid;place-items:center;text-align:center;background:#0b0c10}.drop .ico{font-size:44px;color:var(--pink)}.form{padding:10px}.field{margin-bottom:14px}.field label{display:block;color:#aaa;font-size:11px;margin-bottom:6px}.field input,.field textarea{width:100%;background:#171820;color:white;border:1px solid #2b2d36;border-radius:10px;padding:12px;outline:none}.field textarea{min-height:100px;resize:vertical}
+.timeline{max-width:760px;margin:auto;border-left:1px solid #3b3136;padding-left:30px}.event{position:relative;margin-bottom:34px}.event i{position:absolute;left:-47px;width:32px;height:32px;border:1px solid var(--pink);border-radius:50%;display:grid;place-items:center;background:#111219;color:var(--pink);font-style:normal}
+.modal{position:fixed;inset:0;background:#050507ed;z-index:60;display:none;align-items:center;justify-content:center;padding:30px}.modal.open{display:flex}.modalbox{max-width:1100px;width:100%;background:#101116;border:1px solid #fff1;border-radius:18px;overflow:hidden;display:grid;grid-template-columns:1fr 320px}.viewer{min-height:65vh;background:#07080b;display:grid;place-items:center}.viewer img,.viewer video{max-width:100%;max-height:78vh}.details{padding:28px;border-left:1px solid #fff1}.details p{color:#aaa;line-height:1.7}.close{position:fixed;right:24px;top:16px;font-size:32px;cursor:pointer}
+.auth{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 30% 20%,#321c25,transparent 35%),#08090d;display:grid;place-items:center;padding:20px}.authbox{width:min(440px,100%);background:#111219ee;border:1px solid #fff1;border-radius:25px;padding:34px;box-shadow:0 25px 100px #000b}.authlogo{text-align:center;color:var(--pink);font-size:32px}.auth h1{text-align:center;font:600 48px/1 Caveat;margin:10px 0}.auth p{text-align:center;color:#888;font-size:12px}.tabs{display:flex;background:#0b0c10;padding:4px;border-radius:12px;margin:24px 0}.tabs button{width:50%;border:0;background:transparent;color:#888;padding:10px;border-radius:9px}.tabs button.active{background:#242027;color:white}.auth .field{margin:12px 0}.auth .btn{width:100%;margin-top:5px}.switch{text-align:center;margin-top:15px;color:#777;font-size:11px}.switch span{color:var(--pink);cursor:pointer}.error{color:#ff9fb5;text-align:center;font-size:11px;margin-top:12px;min-height:15px}
+@media(max-width:850px){.topbar{padding:0 15px}.nav{gap:13px}.nav a:nth-child(n+4){display:none}.page{padding:16px}.hero{height:78vh;min-height:560px}.hero-content{padding:0 25px}.gallery{grid-template-columns:repeat(2,1fr)}.upload{grid-template-columns:1fr}.modalbox{grid-template-columns:1fr}.details{border-left:0;border-top:1px solid #fff1}.viewer{min-height:50vh}}
+@media(max-width:500px){.user .email{display:none}.head{display:block}.chips{margin-top:16px}.gallery{gap:9px}.thumb{height:175px}.hero h1{font-size:64px}}
+</style>
+</head>
+<body>
+<div id="auth" class="auth">
+ <div class="authbox">
+  <div class="authlogo">♡</div><h1>Our Little Forever</h1><p>Tempat kecil untuk menyimpan cerita besar kita.</p>
+  <div class="tabs"><button id="loginTab" class="active" onclick="mode('login')">Masuk</button><button id="signupTab" onclick="mode('signup')">Daftar</button></div>
+  <div class="field"><label>Email</label><input id="email" type="email" placeholder="nama@email.com"></div>
+  <div class="field"><label>Password</label><input id="password" type="password" placeholder="••••••••"></div>
+  <div id="nameField" class="field hidden"><label>Nama</label><input id="name" placeholder="Nama kamu"></div>
+  <button class="btn" id="authBtn" onclick="submitAuth()">Masuk ♡</button><div class="error" id="authError"></div>
+  <div class="switch" id="switchText">Belum punya akun? <span onclick="mode('signup')">Daftar sekarang</span></div>
+ </div>
+</div>
 
+<div id="app" class="hidden">
+<header class="topbar"><a class="brand" href="#home"><b>♡</b> Our Little Forever</a><nav class="nav"><a href="#home">Beranda</a><a href="#gallery">Galeri</a><a href="#upload">Upload</a><a href="#memories">Memories</a></nav><div class="user"><span class="email" id="userEmail"></span><div class="avatar"></div><button class="logout" onclick="logout()">Keluar</button></div></header>
+<main class="page">
+<section id="home" class="hero"><div class="hero-content"><div class="script" style="font-size:25px;color:var(--pink)">♡ just us</div><h1>Our <em>Little</em><br>Forever</h1><p>Bukan sekadar foto dan video,<br>tapi semua tentang kita. ♡</p><div class="counter">♡ <span>Sudah bersama<br><strong>342 hari</strong></span></div><br><button class="btn" onclick="go('gallery')">Lihat Galeri →</button></div><div class="bottom">Kamu + Aku = Selamanya ♡</div></section>
+
+<section id="gallery"><div class="head"><div><div class="kicker">our moments</div><h2>Galeri Kita ♡</h2><p>Semua momen indah, dalam satu tempat.</p></div><div class="chips"><button class="chip active" data-f="all">Semua</button><button class="chip" data-f="image">Foto</button><button class="chip" data-f="video">Video</button></div></div><div class="gallery" id="grid"></div></section>
+
+<section id="upload"><div class="head"><div><div class="kicker">add a memory</div><h2>Upload Foto / Video</h2><p>Khusus akun kamu — simpan momen baru ke album.</p></div></div><div class="upload"><div class="drop"><div><div class="ico">♧</div><h3>Pilih file atau drop di sini</h3><small>JPG, PNG, MP4, MOV</small><br><br><button class="btn" onclick="document.getElementById('file').click()">Pilih file</button><input id="file" hidden type="file" accept="image/*,video/*"></div></div><div class="form"><div class="field"><label>Judul</label><input id="title" placeholder="Contoh: Sunset di Pantai"></div><div class="field"><label>Kata-kata / Caption</label><textarea id="caption" placeholder="Tulis sesuatu untuk momen ini..."></textarea></div><div class="field"><label>Tanggal</label><input id="date" type="date"></div><button class="btn" onclick="uploadMemory()">Upload ♡</button> <span id="status" style="color:#888;font-size:11px"></span></div></div></section>
+
+<section id="memories"><div class="head"><div><div class="kicker">our story</div><h2>Memories ♡</h2><p>Hal-hal kecil yang jadi bagian dari cerita besar kita.</p></div></div><div class="timeline"><div class="event"><i>♡</i><b>Awal Pertemuan</b><small style="display:block;color:#777;margin-top:5px">Cerita kita dimulai dari satu pertemuan sederhana.</small></div><div class="event"><i>♡</i><b>Hari Kita Memilih Satu Sama Lain</b><small style="display:block;color:#777;margin-top:5px">Satu hari yang sampai sekarang masih terasa spesial.</small></div><div class="event"><i>☆</i><b>Hari Ini</b><small style="display:block;color:#777;margin-top:5px">Dan ceritanya masih terus berjalan...</small></div></div></section>
+<footer style="border-top:1px solid #fff1;padding:45px 0;color:#777;display:flex;justify-content:space-between"><span>♡ Our Little Forever</span><b style="color:#eee">Made with love, for us.</b></footer>
+</main></div>
+
+<div class="modal" id="modal" onclick="closeModal()"><div class="close">×</div><div class="modalbox" onclick="event.stopPropagation()"><div class="viewer" id="viewer"></div><div class="details"><div class="kicker">memory</div><h2 id="mt"></h2><p id="mc"></p><small id="md" style="color:#777"></small></div></div></div>
+
+<script>
+const SUPABASE_URL="PASTE_SUPABASE_URL",SUPABASE_ANON_KEY="PASTE_SUPABASE_ANON_KEY";
+const sb=(SUPABASE_URL.startsWith("PASTE_")||SUPABASE_ANON_KEY.startsWith("PASTE_"))?null:supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+let authMode="login",items=[],filter="all";
+const samples=[
+{title:"Kamu selalu jadi alasan aku tersenyum ♡",caption:"Entah kenapa, lihat kamu selalu bikin hari jadi lebih baik.",media_url:"https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=85",media_type:"image",created_at:"2025-05-12"},
+{title:"Sunset bareng kamu",caption:"Salah satu pemandangan favoritku.",media_url:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85",media_type:"image",created_at:"2025-05-08"},
+{title:"Jalan-jalan kecil",caption:"Bareng kamu, hal sederhana jadi berharga.",media_url:"https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1000&q=85",media_type:"image",created_at:"2025-05-03"},
+{title:"Genggamanmu, rumahku ♡",caption:"Semoga tangan ini tetap saling menggenggam.",media_url:"https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?auto=format&fit=crop&w=1000&q=85",media_type:"image",created_at:"2025-04-28"},
+{title:"Kita, di tempat yang kita suka",caption:"Nggak harus mewah. Yang penting kamu.",media_url:"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=85",media_type:"image",created_at:"2025-04-20"},
+{title:"Cantik banget ya kamu",caption:"Foto ini selalu bikin aku senyum.",media_url:"https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1000&q=85",media_type:"image",created_at:"2025-04-15"}];
+
+function mode(m){authMode=m;loginTab.classList.toggle("active",m==="login");signupTab.classList.toggle("active",m==="signup");nameField.classList.toggle("hidden",m==="login");authBtn.textContent=m==="login"?"Masuk ♡":"Buat Akun ♡";switchText.innerHTML=m==="login"?'Belum punya akun? <span onclick="mode(\\'signup\\')">Daftar sekarang</span>':'Sudah punya akun? <span onclick="mode(\\'login\\')">Masuk di sini</span>';authError.textContent=""}
+async function submitAuth(){
+ if(!sb){authError.textContent="Isi Supabase URL & Anon Key terlebih dahulu.";return}
+ const e=email.value.trim(),p=password.value,n=name.value.trim();if(!e||!p){authError.textContent="Email dan password wajib diisi.";return}
+ authError.textContent="Memproses...";
+ let r=authMode==="login"?await sb.auth.signInWithPassword({email:e,password:p}):await sb.auth.signUp({email:e,password:p,options:{data:{name:n}}});
+ if(r.error){authError.textContent=r.error.message;return}
+ if(authMode==="signup"&&!r.data.session){authError.textContent="Akun dibuat. Cek email untuk verifikasi, lalu masuk.";return}
+ showApp(r.data.user);
+}
+async function check(){if(!sb){auth.classList.add("hidden");app.classList.remove("hidden");items=samples;render();return}const r=await sb.auth.getSession();if(r.data.session)showApp(r.data.session.user)}
+function showApp(u){auth.classList.add("hidden");app.classList.remove("hidden");userEmail.textContent=u.email||"";load()}
+async function logout(){if(sb)await sb.auth.signOut();app.classList.add("hidden");auth.classList.remove("hidden");mode("login")}
+function esc(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function fmt(d){return d?new Intl.DateTimeFormat("id-ID",{day:"numeric",month:"long",year:"numeric"}).format(new Date(d)):""}
+function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth"})}
+function render(){let a=filter==="all"?items:items.filter(x=>x.media_type===filter);grid.innerHTML=a.map((x,i)=>`<article class="card"><div class="thumb" onclick="openMedia(${i})">${x.media_type==="video"?`<video src="${esc(x.media_url)}" preload="metadata"></video><span class="play">▶</span>`:`<img src="${esc(x.media_url)}">`}</div><div class="info"><h3>${esc(x.title||"Memory ♡")}</h3><p>${esc(x.caption||"")}</p><div class="date">${fmt(x.created_at)}</div></div></article>`).join("")+`<div class="add" onclick="go('upload')"><div><b>＋</b><br><strong>Tambah kenangan</strong><br><small>foto atau video baru</small></div></div>`}
+async function load(){if(!sb){items=samples;render();return}const r=await sb.from("memories").select("*").order("created_at",{ascending:false});if(r.error){status.textContent="Database belum siap.";items=[]}else items=r.data||[];render()}
+async function uploadMemory(){if(!sb){toast("Hubungkan Supabase dulu.");return}const f=file.files[0];if(!f){toast("Pilih foto/video dulu ♡");return}status.textContent="Mengupload...";const ext=f.name.split(".").pop().toLowerCase(),path=`${(await sb.auth.getUser()).data.user.id}/${crypto.randomUUID()}.${ext}`;let r=await sb.storage.from("memories").upload(path,f);if(r.error){toast(r.error.message);return}const url=sb.storage.from("memories").getPublicUrl(path).data.publicUrl;r=await sb.from("memories").insert({title:title.value,caption:caption.value,media_url:url,media_type:f.type.startsWith("video/")?"video":"image",created_at:date.value||new Date().toISOString()});if(r.error){toast(r.error.message);return}toast("Tersimpan ♡");status.textContent="Berhasil";load()}
+function openMedia(i){let a=filter==="all"?items:items.filter(x=>x.media_type===filter),x=a[i];viewer.innerHTML=x.media_type==="video"?`<video src="${esc(x.media_url)}" controls autoplay playsinline></video>`:`<img src="${esc(x.media_url)}">`;mt.textContent=x.title||"Memory ♡";mc.textContent=x.caption||"";md.textContent=fmt(x.created_at);modal.classList.add("open")}
+function closeModal(){modal.classList.remove("open");viewer.innerHTML=""}
+function toast(t){const n=document.createElement("div");n.textContent=t;n.style="position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#f3a0b7;color:#24181c;padding:13px 18px;border-radius:99px;font-weight:700;z-index:200";document.body.appendChild(n);setTimeout(()=>n.remove(),2500)}
+document.querySelectorAll(".chip").forEach(x=>x.onclick=()=>{document.querySelectorAll(".chip").forEach(y=>y.classList.remove("active"));x.classList.add("active");filter=x.dataset.f;render()});
+file.onchange=()=>status.textContent=file.files[0]?.name||"Belum ada file";
+if(sb)sb.auth.onAuthStateChange((event,session)=>{if(event==="SIGNED_OUT"){app.classList.add("hidden");auth.classList.remove("hidden")}});
+check();
+</script>
+</body></html>
